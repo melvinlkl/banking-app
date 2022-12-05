@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="ISO-8859-1">
+    <title>Login Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+    <div th:replace="Components :: nav"></div>
+    <div th:replace="Components :: links"></div>
+  </head>
+  <body>
+    <div class="container">
+      <!-- code here -->
+      <div class="card">
+        <div class="card-image">
+          <h4 class="card-heading text-center"> Welcome to Midas Bank Personal Banking</h4>
+        </div>
+        <form th:action="@{/login}" method="POST" class="card-form">
+          <div class="input">
+            <input type="text" name="username" class="input-field" required />
+            <label class="input-label">Username</label>
+          </div>
+          <div class="input">
+            <input type="password" name="password" class="input-field" required />
+            <label class="input-label">Password</label>
+          </div>
+          <div class="card-info">
+            <br>
+            <a href="/signup">Create an Account</a><br>
+            Forgot <a href="#">User ID</a> or
+            <a href="#">Password</a><br>
+            <a href="#">Frequently Asked Questions</a>
+          </div>
+          <div class="action">
+            <button class="action-button">Login</button>
+          </div>
+        </form>
+      </div>
+  </body>
+</html>

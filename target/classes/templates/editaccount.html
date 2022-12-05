@@ -1,0 +1,59 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+		<meta charset="ISO-8859-1">
+		<title>Edit Account</title>
+		<div th:replace="Components :: links"></div>
+		<div th:replace="components :: nav"></div>
+		<style>
+			th,
+			td {
+				text-align: center;
+			}
+		
+			.center {
+				width: 45%;
+				margin: auto;
+			}
+		</style>
+</head>
+<body>
+
+	<div class="center">
+		<h1 class="center">Edit Account</h1>
+				<form th:action="@{/save/account/{id} (id = ${id})}" method="post" id="editaccount" th:object="${account}">
+					
+					<div class="form-group">
+						<label for="id"> Account ID (Will be hidden later) </label>
+						<input type="number" th:field="*{id}" class="form-control" id="id" 
+							name="id" readonly/>						
+					</div>
+					<div class="form-group">
+						<label for="accNumber"> Account Number: </label>
+						<input type="number" th:field="*{accNumber}" class="form-control" id="accNumber" 
+							name="accNumber" readonly/>						
+					</div>					
+					<div class="form-group">
+						<label for="accType"> Account Type: </label>
+						<br><select th:field="*{accType}" class="form-control" id="accType" name="accType"
+								autofocus>
+							<option value="Current">Current</option>
+							<option value="Savings">Savings</option>
+							<option value="Fixed Deposit">Fixed Deposit</option>
+							<option value="Recurring Deposit">Recurring Deposit</option>
+							</select>
+					</div>
+					<div class="form-group">
+						<label for="balance"> Account Balance: </label>
+						<input type="number" th:field="*{balance}" class="form-control" id="balance" 
+							name="balance" step=".01" readonly />
+					</div>					
+					<input class="btn btn-outline-dark" type="submit" value="Confirm" />
+					<a th:href="@{/view/account/{id} (id = ${id})}">
+						<button type="button" class="btn btn-outline-dark" role="button">Cancel</button>
+					</a>
+				</form>
+	</div>
+	<div th:replace="components :: footer"></div>
+</body>
+</html> -->

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Transaction View</title>
+<div th:replace="components :: links"></div>
+<div th:replace="components :: nav"></div>
+<div th:replace="components :: styleView"></div>
+</head>
+<body>
+	<br>
+	<div>
+		<h2>Transactions</h2>
+		<a th:href="@{/transactionform/{uid}/{aid}(uid=${uid},aid=${aid})}"
+			id="acc-btn" class="btn btn-primary btn-lg active" role="button"
+			aria-pressed="true">New Transaction</a>
+		<div class="table-responsive" style="height: 300px">
+			<table class="table table-bordered table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th class="sticky-top">Transaction No</th>
+						<th class="sticky-top">Amount(SGD)</th>
+						<th class="sticky-top">Type</th>
+						<th class="sticky-top">Status</th>
+						<th class="sticky-top">Time</th>
+						<th class="sticky-top">Account Number</th>
+					</tr>
+				</thead>
+
+				<tbody>
+
+					<tr th:each="t:${transactions}">
+						<td th:text="${t.transactionNo}"></td>
+						<td
+							th:text="|$ ${#numbers.formatDecimal(t.transactionAmount, 1, 'COMMA', 2, 'POINT')}|"></td>
+						<td th:text="${t.transactionType}"></td>
+						<td th:text="${t.transactionStatus}"></td>
+						<td th:text="${t.transactionDateTime}"></td>
+						<td th:text="${t.account.accNumber}"></td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+		<form th:action="@{/view/account/{uid}(uid=${uid})}">
+			<a th:href="@{/view/account/{uid}(uid=${uid})}" class="btn btn-primary btn-lg active"
+				role="button" aria-pressed="true">
+				Back to Account
+			</a>
+		</form>
+
+		<!-- 		<form th:action = "@{/transactionform/{uid}/{aid}(uid=${uid},aid=${aid})}"> -->
+		<!-- 			<button type="submit" class="btn btn-primary btn-lg active" role="button" aria-pressed="true"> -->
+		<!-- 			New Transfer <i class="fa-solid fa-money-bill-transfer"></i> -->
+		<!-- 		</button> -->
+		<!-- 		</form> -->
+	</div>
+	<div th:replace="components :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>View Users Page</title>
+<div th:replace="Components :: links"></div>
+<div th:replace="components :: nav"></div>
+<div th:replace="components :: styleView"></div>
+</head>
+<body>
+	<br>
+	<h2>User Details</h2>
+	<a th:href="@{/signup}" id="acc-btn"
+		class="btn btn-primary btn-lg active" role="button"
+		aria-pressed="true">Add User</a>
+	<div class="table-responsive" style="height: 300px">
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Customer's Name</th>
+					<th>Customer's NRIC</th>
+					<th>Contact Number</th>
+					<th>Customer's Address</th>
+					<th>Email Address</th>
+					<th>Username</th>
+					<th>View Account Details</th>
+					<th colspan="2">Edit Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="u:${userList}">
+
+						<td th:text="${u.name}"></td>
+						<td th:text="${u.identityCardNum}"></td>
+						<td th:text="${u.contactNo}"></td>
+						<td th:text="${u.address}"></td>
+						<td th:text="${u.email}"></td>
+						<td th:text="${u.username}"></td>
+						<td><a th:href="@{/view/account/{id} (id = ${u.userid})}"><i
+								class="fa-solid fa-file-invoice"></i></a></td>
+						<td><a th:href="@{/edit/users/{id} (id = ${u.userid})}"><i
+								class="fa-solid fa-pen-to-square"></i></td>
+						<td  sec:authorize="hasAuthority('ADMIN')">
+						<a th:href="@{/delete/user/{id} (id = ${u.userid})}"><i
+								class="fa-solid fa-trash"></i></td>
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<br>
+	<div th:replace="components :: footer"></div>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Add New Account</title>
+<div th:replace="Components :: links"></div>
+<div th:replace="components :: nav"></div>
+<style>
+th, td {
+	text-align: center;
+}
+
+.center {
+	width: 45%;
+	margin: auto;
+}
+</style>
+</head>
+<body>
+
+	<div class="center">
+		<h2 class="center">Add New Account</h2>
+		<form th:action="@{/save/account/{id} (id = ${id})}" method="post"
+			id="addaccount" th:object="${account}">
+
+
+			<div class="form-group">
+				<label for="accType"> Account Type: </label> <br>
+				<select th:field="*{accType}" class="form-control" id="accType"
+					name="accType" autofocus>
+					<option value="Current">Current</option>
+					<option value="Savings">Savings</option>
+					<option value="Fixed Deposit">Fixed Deposit</option>
+					<option value="Recurring Deposit">Recurring Deposit</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="balance"> Deposit: </label> <input type="number"
+					th:field="*{balance}" class="form-control" id="balance"
+					name="balance" min="0" max="99999" step="0.01" placeholder="0" />
+				<small id="limit" class="form-text text-muted"> Maximum
+					value of up to $99,999. </small>
+			</div>
+			<input class="btn btn-outline-dark" type="submit" value="Add" /> <a
+				th:href="@{/view/account/{id} (id = ${id})}">
+				<button type="button" class="btn btn-outline-dark" role="button">Cancel</button>
+			</a>
+		</form>
+	</div>
+	<div th:replace="components :: footer"></div>
+
+</body>
+</html>
